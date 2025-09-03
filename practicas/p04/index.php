@@ -151,5 +151,25 @@
     print_r($GLOBALS['z']);
     ?>
 
+    <h2>Ejercicio 5</h2>
+    <p>Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>
+    <p>$a = "7 personas";</p>
+    <p>$b = (integer) $a;</p>
+    <p>$a = "9E3";</p>
+    <p>$c = (double) $a;</p>
+
+
+    <?php
+    $a = "7 personas";
+    $b = (integer) $a;
+    $a = "9E3";
+    $c = (double) $a;
+
+    echo '<h4>Respuesta:</h4>';
+    echo "a = $a<br>";
+    echo "b = $b<br>";
+    echo "c = $c<br>";
+    ?>
+
 </body>
 </html>
