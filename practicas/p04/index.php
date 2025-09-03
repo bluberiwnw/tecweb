@@ -48,11 +48,11 @@
 
     echo '<h4>Respuesta:</h4>';
 
-    print_r($a);
+    print($a);
     echo "<br>";
-    print_r($b);
+    print($b);
     echo "<br>";
-    print_r($c);
+    print($c);
     
 
      echo '<p>b. Agrega al código actual las siguientes asignaciones:</p>';
@@ -68,11 +68,66 @@
 
     echo '<h4>Respuesta:</h4>';
 
-    print_r($a);
+    print($a);
     echo "<br>";
-    print_r($b);
+    print($b);
     echo "<br>";
-    print_r($c);
+    print($c);
+    ?>
+
+    <h2>Ejercicio 3</h2>
+    <p>Muestra el contenido de cada variable inmediatamente después de cada asignación,
+    verificar la evolución del tipo de estas variables (imprime todos los componentes de los
+    arreglo):</p>
+
+    <?php
+    echo '<p>$a = “PHP5”;</p>';
+    echo '<p>$z[] = &$a;</p>';
+    echo '<p>$b = "5a version de PHP"</p>';
+    echo '<p>$c = $b*10;</p>';
+    
+
+
+    echo '<p>a. Ahora muestra el contenido de cada variable</p>';
+
+    
+    $a = 'PHP5';
+    $z[] = &$a;
+    $b = '5a version de PHP';
+    $c = $b*10; 
+
+    echo '<h4>Respuesta:</h4>';
+
+    print($a);
+    echo "<br>";
+    print($b);
+    echo "<br>";
+    print($c);
+    echo "<br>";
+    print_r($z);
+    
+
+    echo '<p>b. Agrega al código actual lo siguiente:</p>';
+    echo '<p>$a .= $b;</p>';
+    echo '<p>$b *= $c;</p>';
+    echo '<p>z[0] = "MYSQL";</p>';
+    
+
+    /*$a = 'ManejadorSQL';
+    $b = 'MySQL';*/
+    $a .= $b;
+    $b *= $c;
+    $z[0] = 'MySQL';
+
+    echo '<h4>Respuesta:</h4>';
+
+    print($a);
+    echo "<br>";
+    print($b);
+    echo "<br>";
+    print($c);
+    echo "<br>";
+    print_r($z);
     ?>
 
 </body>
