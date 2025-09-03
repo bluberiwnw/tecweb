@@ -195,8 +195,23 @@ var_dump($a, $b, $c, $d, $e, $f);
 echo "<br>";
 echo "c = " . (int)$c . "<br>"; 
 echo "e = " . (int)$e . "<br>";
-
 ?>
+
+<h2>Ejercicio 7</h2>
+    <p>Usando la variable predefinida <code>$_SERVER</code>, determina lo siguiente:</p>
+    <ul>
+        <li>La versión de Apache y PHP</li>
+        <li>El nombre del sistema operativo (servidor)</li>
+        <li>El idioma del navegador (cliente)</li>
+    </ul>
+
+    <?php
+    echo '<h4>Respuesta:</h4>';
+    echo "Versión de PHP: " . phpversion() . "<br>";
+    echo "Software del servidor (Apache): " . $_SERVER['SERVER_SOFTWARE'] . "<br>";
+    echo "Sistema operativo del servidor: " . PHP_OS . "<br>";
+    echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
+    ?>
 
 
 </body>
