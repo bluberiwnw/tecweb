@@ -7,6 +7,10 @@
         ol, ul { 
       list-style-type: none;
         }
+        body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: beige;
+    }
     </style>
   </head>
 
@@ -18,7 +22,7 @@
 
     <p>Información del Participante</p>
 
-    <form action="/concurso.php" method="post">
+    <form action="concurso.php" method="post">
             <li><label for="firstlast">Name:</label>
               <input type="text" name="username" id="firstlast"></li>
             <br>
@@ -28,15 +32,14 @@
             <li><label for="phone">Número teléfonico:</label>
               <input type="number" name="phone" id="phone"></li>
             <br>
-            <li> Mis tenis son tan feos porque...<br>
-              <textarea name="..." rows="4" cols="60" maxlength="..."
-              placeholder="..."></textarea></li>
-              </div>
-            <br>
+            <li>Mis tenis son tan feos porque...<br>
+              <textarea name="descripcion" rows="4" cols="60" maxlength="..."
+              placeholder="No más de 300 caracteres de longitud"></textarea></li>            
             <br>
           </ol>
-              <input type="submit" value="Submit">
-    </form>
+            <p><input type="submit">
+            <input type="reset"></p>
+      </form>
 
     <h2>Diseña tus Mike personalizados:</h2>
 
