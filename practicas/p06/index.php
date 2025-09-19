@@ -26,6 +26,19 @@
     echo Multiplo5y7($num);  
     }
     ?>
+
+    <h2>Ejercicio 2</h2>
+    <p>Crear programar para generar números y obtener secuencia impar, par, impar</p>
+    <form action="http://localhost:8080/tecweb/practicas/p06/index.php" method="get">
+        <input type="hidden" name="ej2" value="1">
+        <input type="submit" value="Generar">
+    </form>
+
+    <?php
+    if (isset($_GET['ej2'])) {
+        echo generarSecuencia();
+    }
+    ?>
     
 </body>
 </html>
