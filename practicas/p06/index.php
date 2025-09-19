@@ -39,6 +39,34 @@
         echo generarSecuencia();
     }
     ?>
+
+     <h2>Ejercicio 3</h2>
+    <p>Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.</p>
+    <form action="http://localhost:8080/tecweb/practicas/p06/index.php" method="get">
+        Número divisor: <input type="text" name="divisor">
+        <input type="submit" value="Buscar con while">
+    </form>
+
+    <?php
+    if (isset($_GET['divisor'])) {
+        echo buscarMultiploWhile($_GET['divisor']);
+        echo "<br><br>";
+        echo buscarMultiploDoWhile($_GET['divisor']);
+    }
+    ?>
     
+
+    <h2>Ejercicio 4</h2>
+    <p>Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.</p>
+    <form action="index.php" method="get">
+        <input type="hidden" name="ej4" value="1">
+        <input type="submit" value="Mostrar tabla">
+    </form>
+
+    <?php
+    if (isset($_GET['ej4'])) {
+        echo mostrarTablaAscii();
+    }
+    ?>
 </body>
 </html>
