@@ -57,8 +57,8 @@
     
 
     <h2>Ejercicio 4</h2>
-    <p>Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente, pero que además sea múltiplo de un número dado.</p>
-    <form action="index.php" method="get">
+    <p>Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la ‘a’ a la ‘z’.</p>
+    <form action="http://localhost:8080/tecweb/practicas/p06/index.php" method="get">
         <input type="hidden" name="ej4" value="1">
         <input type="submit" value="Mostrar tabla">
     </form>
@@ -68,5 +68,40 @@
         echo mostrarTablaAscii();
     }
     ?>
+
+    <h2>Ejercicio 5</h2>
+    <p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje de bienvenida apropiado.</p>
+    <form action="http://localhost:8080/tecweb/practicas/p06/resultado_ej5.php" method="post">
+        Edad: <input type="number" name="edad" required><br>
+        Sexo: 
+        <select name="sexo" required>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+        </select><br>
+        <input type="submit" value="Verificar">
+    </form>
+
+    <h2>Ejercicio 6</h2>
+    <p>Consulta de parque vehicular</p>
+    <form action="http://localhost:8080/tecweb/practicas/p06/resultado_ej6.php" method="get">
+        Matrícula: <input type="text" name="matricula" required>
+        <input type="submit" name="buscar" value="Buscar">
+    </form>
+
+    <form action="http://localhost:8080/tecweb/practicas/p06/resultado_ej6.php" method="get">
+        <input type="hidden" name="accion" value="mostrar_todo">
+        <input type="submit" value="Mostrar todos los autos">
+    </form>
+
+    <?php
+    if (isset($_GET['buscar'])) {
+    $matricula = $_GET['matricula'];
+    echo buscarAuto($matricula);
+    } elseif (isset($_GET['accion']) && $_GET['accion'] === 'mostrar_todo') {
+    echo mostrarAutos();
+    } else {
+    echo "<p>No se recibió ninguna acción.</p>";
+    }
+?>
 </body>
 </html>
