@@ -14,8 +14,10 @@ if (!empty($tope))
     if ($link->connect_errno) 
     {
         die('Falló la conexión: '.$link->connect_error.'<br/>');
-        /** NOTA: con @ se suprime el Warning para gestionar el error por medio de código */
     }
+
+    /** Forzar UTF-8 en la conexión */
+    $link->set_charset("utf8");
 
     /** Ejecutar consulta */
     if ($result = $link->query("SELECT * FROM productos WHERE unidades <= '{$tope}'")) 
@@ -40,7 +42,7 @@ if (!empty($tope))
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
 <body>
-    <h3>LISTADO DE PRODUCTOS</h3>
+    <h3>PRODUCTO</h3>
     <br/>
 
     <?php if( isset($rows) && count($rows) > 0 ) : ?>
@@ -61,14 +63,14 @@ if (!empty($tope))
             <tbody>
                 <?php foreach($rows as $row): ?>
                 <tr>
-                    <th scope="row"><?= $row['id'] ?></th>
-                    <td><?= $row['nombre'] ?></td>
-                    <td><?= $row['marca'] ?></td>
-                    <td><?= $row['modelo'] ?></td>
-                    <td><?= $row['precio'] ?></td>
-                    <td><?= $row['unidades'] ?></td>
-                    <td><?= utf8_encode($row['detalles']) ?></td>
-                    <td><img src="<?= $row['imagen'] ?>" width="80" /></td>
+                    <th scope="row"><?= htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') ?></th>
+                    <td><?= htmlspecialchars($row['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($row['marca'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($row['modelo'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($row['precio'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($row['unidades'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($row['detalles'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><img src="<?= htmlspecialchars($row['imagen'], ENT_QUOTES, 'UTF-8') ?>" width="80" alt="Imagen del producto"/></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
