@@ -5,21 +5,13 @@
     <title>Práctica 4</title>
 </head>
 <body>
+
+    <H1>Práctica 4</H1>
+
+
     <h2>Ejercicio 1</h2>
-    <p>Determina cuál de las siguientes variables son válidas y explica por qué:</p>
-    <p>$_myvar,  $_7var,  myvar,  $myvar,  $var7,  $_element1, $house*5</p>
     <?php
-        //AQUI VA MI CÓDIGO PHP
-        $_myvar;
-        $_7var;
-        //myvar;       // Inválida
-        $myvar;
-        $var7;
-        $_element1;
-        //$house*5;     // Invalida
-        
         echo '<h4>Respuesta:</h4>';   
-    
         echo '<ul>';
         echo '<li>$_myvar es válida porque inicia con guión bajo.</li>';
         echo '<li>$_7var es válida porque inicia con guión bajo.</li>';
@@ -32,47 +24,23 @@
     ?>
 
     <h2>Ejercicio 2</h2>
-    <p>Proporcionar los valores de $a, $b, $c como sigue:</p>
-
     <?php
-    echo '<p>$a = "ManejadorSQL";</p>';
-    echo '<p>$b = "MySQL";</p>';
-    echo '<p>$c = &$a;</p>';
-
-    echo '<p>a. Ahora muestra el contenido de cada variable</p>';
-
-    
     $a = 'ManejadorSQL';
     $b = 'MySQL';
     $c = &$a;
 
-    echo '<h4>Respuesta:</h4>';
+    echo '<h4>Respuesta a.:</h4>';
+    echo "a = $a<br>";
+    echo "b = $b<br>";
+    echo "c = $c<br>";
 
-    print($a);
-    echo "<br>";
-    print($b);
-    echo "<br>";
-    print($c);
-    
-
-     echo '<p>b. Agrega al código actual las siguientes asignaciones:</p>';
-     echo '<p>$a = “PHP server”;</p>';
-     echo '<p>$b = &$a;</p>';
-    
-
-    /*$a = 'ManejadorSQL';
-    $b = 'MySQL';*/
-    $c = &$a;
     $a = 'PHP server';
-    $b = &$a;
+    $b = &$a; // reasignación por referencia
 
-    echo '<h4>Respuesta:</h4>';
-
-    print($a);
-    echo "<br>";
-    print($b);
-    echo "<br>";
-    print($c);
+    echo '<h4>Respuesta b.:</h4>';
+    echo "a = $a<br>";
+    echo "b = $b<br>";
+    echo "c = $c<br>";
     ?>
 
     <h2>Ejercicio 3</h2>
@@ -81,64 +49,49 @@
     arreglo):</p>
 
     <?php
-    echo '<p>$a = “PHP5”;</p>';
+    echo '<p>$a = "PHP5";</p>';
     echo '<p>$z[] = &$a;</p>';
     echo '<p>$b = "5a version de PHP"</p>';
     echo '<p>$c = $b*10;</p>';
-    
-
 
     echo '<p>a. Ahora muestra el contenido de cada variable</p>';
 
-    
     $a = 'PHP5';
+    $z = [];          
     $z[] = &$a;
     $b = '5a version de PHP';
-    $c = $b*10; 
+    $c = (int)$b * 10;   
 
     echo '<h4>Respuesta:</h4>';
-
-    print($a);
-    echo "<br>";
-    print($b);
-    echo "<br>";
-    print($c);
-    echo "<br>";
-    print_r($z);
-    
+    echo "a = $a<br>";
+    echo "b = $b<br>";
+    echo "c = $c<br>";
+    echo "z = "; print_r($z); echo "<br>";
 
     echo '<p>b. Agrega al código actual lo siguiente:</p>';
     echo '<p>$a .= $b;</p>';
     echo '<p>$b *= $c;</p>';
     echo '<p>z[0] = "MYSQL";</p>';
-    
 
-    /*$a = 'ManejadorSQL';
-    $b = 'MySQL';*/
     $a .= $b;
-    $b *= $c;
+    $b = (int)$b * $c;   
     $z[0] = 'MySQL';
 
     echo '<h4>Respuesta:</h4>';
-
-    print($a);
-    echo "<br>";
-    print($b);
-    echo "<br>";
-    print($c);
-    echo "<br>";
-    print_r($z);
+    echo "a = $a<br>";
+    echo "b = $b<br>";
+    echo "c = $c<br>";
+    echo "z = "; print_r($z); echo "<br>";
     ?>
 
-    <h2>Ejercicio 4</h2>
-    <p>Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
-    la matriz <b>$GLOBALS</b> o del modificador <b>global</b> de PHP.</p>
 
+    <h2>Ejercicio 4</h2>
     <?php
     $a = 'PHP5';
+    $z = [];
     $z[] = &$a;
-    $b = '5a version de PHP';
-    $c = $b*10;
+    $b = '5';
+    $c = $b * 10;
     $a .= $b;
     $b *= $c;
     $z[0] = 'MySQL';
@@ -147,23 +100,15 @@
     echo "a = " . $GLOBALS['a'] . "<br>";
     echo "b = " . $GLOBALS['b'] . "<br>";
     echo "c = " . $GLOBALS['c'] . "<br>";
-    echo "z = ";
-    print_r($GLOBALS['z']);
+    echo "z = "; print_r($GLOBALS['z']); echo "<br>";
     ?>
 
     <h2>Ejercicio 5</h2>
-    <p>Dar el valor de las variables $a, $b, $c al final del siguiente script:</p>
-    <p>$a = "7 personas";</p>
-    <p>$b = (integer) $a;</p>
-    <p>$a = "9E3";</p>
-    <p>$c = (double) $a;</p>
-
-
     <?php
     $a = "7 personas";
-    $b = (integer) $a;
-    $a = "9E3";
-    $c = (double) $a;
+    $b = (int)$a;
+    $a = "9E3";     
+    $c = (double)$a;
 
     echo '<h4>Respuesta:</h4>';
     echo "a = $a<br>";
@@ -171,48 +116,38 @@
     echo "c = $c<br>";
     ?>
 
-<h2>Ejercicio 6</h2>
-<p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y mostrarlas usando la función <code>var_dump()</code>. Después transformar los valores booleanos de $c y $e en uno que se pueda mostrar con <code>echo</code>:</p>
+    <h2>Ejercicio 6</h2>
+    <?php
+    $a = "0";      
+    $b = "TRUE";   
+    $c = false;    
 
-<p>$a = "0";</p>
-<p>$b = "TRUE";</p>
-<p>$c = FALSE;</p>
-<p>$d = ($a OR $b);</p>
-<p>$e = ($a AND $c);</p>
-<p>$f = ($a XOR $b);</p>
+    $d = ($a || $b);  
+    $e = ($a && $c);
+    $f = ($a xor (bool)$b); 
 
-<?php
-$a = "0";
-$b = "TRUE";
-$c = FALSE;
+    echo '<h4>Respuesta:</h4>';
+    var_dump($a, $b, $c, $d, $e, $f);
 
-$d = $a || $b;  
-$e = $a && $c;
-$f = $a xor $b; 
+    echo "<br>";
+    echo "c = " . (int)$c . "<br>"; 
+    echo "e = " . (int)$e . "<br>";
+    ?>
 
-var_dump($a, $b, $c, $d, $e, $f);
-
-echo "<br>";
-echo "c = " . (int)$c . "<br>"; 
-echo "e = " . (int)$e . "<br>";
-?>
-
-<h2>Ejercicio 7</h2>
-    <p>Usando la variable predefinida <code>$_SERVER</code>, determina lo siguiente:</p>
-    <ul>
-        <li>La versión de Apache y PHP</li>
-        <li>El nombre del sistema operativo (servidor)</li>
-        <li>El idioma del navegador (cliente)</li>
-    </ul>
-
+    <h2>Ejercicio 7</h2>
     <?php
     echo '<h4>Respuesta:</h4>';
     echo "Versión de PHP: " . phpversion() . "<br>";
-    echo "Software del servidor (Apache): " . $_SERVER['SERVER_SOFTWARE'] . "<br>";
+    echo "Software del servidor (Apache): " . ($_SERVER['SERVER_SOFTWARE'] ?? 'No disponible') . "<br>";
     echo "Sistema operativo del servidor: " . PHP_OS . "<br>";
-    echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
+    echo "Idioma del navegador: " . ($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? 'No disponible') . "<br>";
     ?>
 
-
+    <footer>
+        <p>
+        <a href="https://validator.w3.org/check?uri=referer">
+        <img src="https://www.w3.org/Icons/valid-xhtml11" alt="XHTML 1.1" válido alto="31" ancho="88" /></a>
+    </p>
+    </footer>
 </body>
 </html>
