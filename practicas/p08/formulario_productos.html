@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Productos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        fieldset {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        legend {
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 6px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], input[type="reset"] {
+            width: auto;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Registro de Nuevo Producto</h1>
+
+<form action="set_producto_v2.php" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario()">
+    <fieldset>
+        <legend>Datos del Producto</legend>
+
+        <label for="nombre">Nombre del Producto:</label>
+        <input type="text" name="nombre" id="nombre" maxlength="100" required>
+
+        <label for="marca">Marca:</label>
+        <input type="text" name="marca" id="marca" maxlength="25" required>
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" name="modelo" id="modelo" maxlength="25" required>
+
+        <label for="precio">Precio:</label>
+        <input type="number" name="precio" id="precio" min="0" step="0.01" required>
+
+        <label for="detalles">Detalles:</label>
+        <textarea name="detalles" id="detalles" rows="4" maxlength="250" placeholder="Detalles adicionales"></textarea>
+
+        <label for="unidades">Unidades en Stock:</label>
+        <input type="number" name="unidades" id="unidades" min="0" required>
+
+        <label for="imagen">Imagen del Producto:</label>
+        <input type="file" name="imagen" id="imagen" accept="image/*">
+    </fieldset>
+
+    <input type="submit" value="Registrar Producto">
+    <input type="reset" value="Limpiar">
+</form>
+
+<script>
+function validarFormulario() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const marca = document.getElementById('marca').value.trim();
+    const modelo = document.getElementById('modelo').value.trim();
+    const precio = document.getElementById('precio').value;
+    const unidades = document.getElementById('unidades').value;
+
+    if (!nombre || !marca || !modelo) {
+        alert("Nombre, Marca y Modelo son obligatorios.");
+        return false;
+    }
+    if (precio < 0 || unidades < 0) {
+        alert("El precio y las unidades deben ser valores positivos.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</body>
+</html>
