@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Registro al Concurso</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: beige;
+            padding: 20px;
+        }
+        fieldset {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+        }
+        legend {
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea {
+            width: 100%;
+            padding: 6px;
+            margin-top: 4px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], input[type="reset"] {
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        label {
+            display: block;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Registro al Concurso &ldquo;Chidos mis Tenis&rdquo;</h1>
+
+<p>¿Quieres cambiar tus viejos tenis por un par personalizado de Tenis Mike&#174;?<br>
+Justifica el por qué tus tenis se <em>tienen que</em> ir y tú puedes ser uno de los diez afortunados ganadores.</p>
+
+<form action="concurso.php" method="post" onsubmit="return validarFormulario()">
+
+    <fieldset>
+        <legend>Información Personal</legend>
+
+        <label for="firstlast">Nombre:</label>
+        <input type="text" name="username" id="firstlast">
+
+        <label for="email">Dirección de E-mail:</label>
+        <input type="email" name="email" id="email">
+
+        <label for="phone">Número Telefónico:</label>
+        <input type="tel" name="phone" id="phone">
+
+        <label for="descripcion">Mis tenis son tan feos porque...</label>
+        <textarea name="descripcion" id="descripcion" rows="4" cols="60" placeholder="No más de 300 caracteres de longitud"></textarea>
+    </fieldset>
+
+    <fieldset>
+        <legend>Diseño personalizado del Tenis</legend>
+
+        <fieldset>
+            <legend>Color (escoge uno)</legend>
+            <label><input type="radio" name="color" value="Rojo"> Rojo</label>
+            <label><input type="radio" name="color" value="Azul"> Azul</label>
+            <label><input type="radio" name="color" value="Negro"> Negro</label>
+            <label><input type="radio" name="color" value="Plateado"> Plateado</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Características (escoge tantas como quieras)</legend>
+            <label><input type="checkbox" name="caractrs[]" value="Cordones brillantes"> Cordones brillantes</label>
+            <label><input type="checkbox" name="caractrs[]" value="Logo metálico"> Logo metálico</label>
+            <label><input type="checkbox" name="caractrs[]" value="Suela luminosa"> Suela luminosa</label>
+            <label><input type="checkbox" name="caractrs[]" value="WiFi integrado"> WiFi integrado</label>
+        </fieldset>
+
+        <fieldset>
+        <legend>Talla</legend>
+        <p>Las medidas reflejan el estándar masculino:</p>
+        <select name="talla" size="1"> 
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+    </select>
+</fieldset>
+
+    </fieldset>
+
+    <p>
+        <input type="submit" value="¡Chidos mis Tenis!">
+        <input type="reset" value="Limpiar">
+    </p>
+
+</form>
+
+<script>
+function validarFormulario() {
+    const nombre = document.getElementById('firstlast').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const telefono = document.getElementById('phone').value.trim();
+    const descripcion = document.getElementById('descripcion').value.trim();
+
+    if (nombre === "" && email === "" && telefono === "" && descripcion === "") {
+        alert("No se envió nada. Por favor llena al menos un campo antes de enviar.");
+        return false; 
+    }
+
+    return true; 
+}
+</script>
+
+</body>
+</html>
