@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Actualizar registros con JS + PHP + MySQL</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        crossorigin="anonymous">
+
+  <script>
+    function updateRow(event) {
+      var row = event.target.closest("tr");
+      var id = row.id;
+      var data = row.querySelectorAll(".row-data");
+
+      var name = data[0].textContent.trim();
+      var age = data[1].textContent.trim();
+
+      var newName = prompt("Nuevo nombre:", name);
+      var newAge = prompt("Nueva edad:", age);
+
+      // Validaciones básicas
+      if (!newName || newName.trim() === "") {
+        alert("❌ El nombre no puede estar vacío.");
+        return;
+      }
+      if (isNaN(newAge) || newAge <= 0) {
+        alert("❌ La edad debe ser un número positivo.");
+        return;
+      }
+
+      // Actualizar en la tabla (DOM)
+      data[0].textContent = newName;
+      data[1].textContent = newAge;
+
+      // --- Enviar actualización al servidor con fetch() ---
+      var formData = new FormData();
+      formData.append("id", id);
+      formData.append("name", newName);
+      formData.append("age", newAge);
+
+      fetch("update.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        alert(data); // Mostrar mensaje del servidor (éxito o error)
+      })
+      .catch(error => {
+        alert("❌ Error al conectar con el servidor: " + error);
+      });
+    }
+  </script>
+</head>
+
+<body class="p-4">
+  <div class="container">
+    <h3 class="mb-3 text-center">Gestión de Usuarios (DOM + PHP + BD)</h3>
+
+    <table class="table table-bordered text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- Estos registros podrían venir de la BD -->
+        <tr id="1">
+          <td>1</td>
+          <td class="row-data">Sara</td>
+          <td class="row-data">23</td>
+          <td><button class="btn btn-primary btn-sm" onclick="updateRow(event)">Editar</button></td>
+        </tr>
+        <tr id="2">
+          <td>2</td>
+          <td class="row-data">John</td>
+          <td class="row-data">30</td>
+          <td><button class="btn btn-primary btn-sm" onclick="updateRow(event)">Editar</button></td>
+        </tr>
+        <tr id="3">
+          <td>3</td>
+          <td class="row-data">Naman</td>
+          <td class="row-data">20</td>
+          <td><button class="btn btn-primary btn-sm" onclick="updateRow(event)">Editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
