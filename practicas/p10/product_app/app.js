@@ -109,31 +109,66 @@ function buscarProducto(e) {
 }
 
 
+// FUNCIÓN DE VALIDACIÓN
+function validarProducto(producto) {
+    const { nombre, marca, modelo, precio, detalles, unidades } = producto;
+
+    if(!nombre || nombre.length > 100){ 
+        alert("Nombre obligatorio <=100"); 
+        return false; 
+    }
+    if(!marca || marca===""){ 
+        alert("Selecciona marca"); 
+        return false; 
+    }
+    const modeloRegex = /^[A-Za-z0-9]+$/;
+    if(!modelo || modelo.length > 25 || !modeloRegex.test(modelo)){ 
+        alert("Modelo alfanumérico <=25"); 
+        return false; 
+    }
+    if(isNaN(precio) || precio <= 99.99){ 
+        alert("El precio debe ser mayor a 99.99"); 
+        return false; 
+    }
+    if(detalles.length > 250){ 
+        alert("Detalles máximo 250 caracteres"); 
+        return false; 
+    }
+    if(isNaN(unidades) || unidades < 0){ 
+        alert("Unidades debe ser 0 o mayor"); 
+        return false; 
+    }
+
+    return true; // pasa todas las validaciones
+}
+
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
     e.preventDefault();
 
-    // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
-    var productoJsonString = document.getElementById('description').value;
-    // SE CONVIERTE EL JSON DE STRING A OBJETO
-    var finalJSON = JSON.parse(productoJsonString);
-    // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-    finalJSON['nombre'] = document.getElementById('name').value;
-    // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
+    // Obtener el JSON desde el textarea
+    let producto = JSON.parse(document.getElementById('description').value);
 
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+    // Agregar el nombre desde el input
+    producto.nombre = document.getElementById('name').value;
+
+    // Validar antes de enviar
+    if(!validarProducto(producto)) return;
+
+    // Enviar al servidor
     var client = getXMLHttpRequest();
     client.open('POST', './backend/create.php', true);
     client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
     client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-        if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
+        if(client.readyState == 4) {
+            // Mostrar mensaje según la respuesta del servidor
+            alert(client.responseText);
         }
     };
-    client.send(productoJsonString);
+    client.send(JSON.stringify(producto));
 }
+
+
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR
 function getXMLHttpRequest() {
