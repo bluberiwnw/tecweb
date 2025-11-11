@@ -65,6 +65,7 @@ $(document).ready(function(){
             url: './backend/product-list.php',
             type: 'GET',
             success: function(response) {
+                console.log('Respuesta del servidor:', response);
                 // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
                 const productos = JSON.parse(response);
             
@@ -88,7 +89,7 @@ $(document).ready(function(){
                                 <td><a href="#" class="product-item">${producto.nombre}</a></td>
                                 <td><ul>${descripcion}</ul></td>
                                 <td>
-                                    <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
+                                    <button class="product-delete btn btn-danger">
                                         Eliminar
                                     </button>
                                 </td>
@@ -106,8 +107,7 @@ $(document).ready(function(){
         if($('#search').val()) {
             let search = $('#search').val();
             $.ajax({
-                url: './backend/product-search.php?search='+$('#search').val(),
-                data: {search},
+                url: './backend/product-single.php?name=' + encodeURIComponent(search),
                 type: 'GET',
                 success: function (response) {
                     if(!response.error) {
@@ -222,20 +222,28 @@ $(document).ready(function(){
             const element = $(this)[0].activeElement.parentElement.parentElement;
             const id = $(element).attr('productId');
             $.post('./backend/product-delete.php', {id}, (response) => {
-                $('#product-result').show(); 
-                $('#container').html(`<li>${data.message}</li>`);
-                listarProductos(); 
+                const data = JSON.parse(response);
+                $('#product-result').show();
+                $('#container').html(`
+                    <li style="list-style:none;">${data.status}</li>
+                    <li style="list-style:none;">${data.message}</li>
+                `);
+                listarProductos();
             });
         }
     });
 
     $(document).on('click', '.product-item', (e) => {
+        e.preventDefault();
         $('button.btn-primary').text("Modificar Producto");
         const element = $(this)[0].activeElement.parentElement.parentElement;
         const id = $(element).attr('productId');
         $.post('./backend/product-single.php', {id}, (response) => {
             // SE CONVIERTE A OBJETO EL JSON OBTENIDO
             let product = JSON.parse(response);
+            if (Array.isArray(product)) {
+                product = product[0];
+            }
             // SE INSERTAN LOS DATOS ESPECIALES EN LOS CAMPOS CORRESPONDIENTES
             $('#name').val(product.nombre);
             // EL ID SE INSERTA EN UN CAMPO OCULTO PARA USARLO DESPUÉS PARA LA ACTUALIZACIÓN
