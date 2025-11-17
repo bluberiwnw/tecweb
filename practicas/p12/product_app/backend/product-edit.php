@@ -2,7 +2,7 @@
     use TECWEB\MYAPI\Update\ProductEdit;
     require_once __DIR__ . '/../vendor/autoload.php';
 
-    $productos = new Products('marketzone');
+    $productos = new ProductEdit('marketzone');
     $productos->edit( json_decode( json_encode($_POST) ) );
     echo $productos->getData();
 ?>
