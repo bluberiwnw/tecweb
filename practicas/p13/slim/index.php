@@ -9,7 +9,7 @@ require 'vendor/autoload.php';
 $app = AppFactory::create();
 
 /* IMPORTANTE */
-$app->setBasePath("/tecweb/practicas/p16/slim");
+$app->setBasePath("/tecweb/practicas/p13/slim");
 
 /* --- MÉTODO GET / --- */
 $app->get('/', function (Request $request, Response $response, $args) {
